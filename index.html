@@ -1,0 +1,639 @@
+<style>
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+</style>
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Predicting Supermarket Sales</title>
+        <link rel="shortcut icon" href="{{ url_for('static', filename='/assets/store2.png') }}">
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="static/css/styles.css" rel="stylesheet" />
+      
+      
+    </head>
+    <body id="page-top">
+      
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="#page-top">Learn AI</a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#EDA">EDA</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#FE">Feature Engineering</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#Modeling">Modeling</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#Evaluation">Evaluation</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#Summary">Summary</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#Team">Team Members</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+      
+        <!-- Masthead-->
+        <header class="masthead">
+            <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
+                <div class="d-flex justify-content-center">
+                    <div class="text-center">
+                        <h1 class="mx-auto my-0 text-uppercase">Predicting Supermarket Sales</h1>
+                        <h2 class="text-white-50 mx-auto mt-2 mb-5">A three-week AI project using data science and machine learning.</h2>
+                        <a class="btn btn-primary" href="#about">Get Started</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- About-->
+        <section class="about-section text-center" id="about">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-lg-8">
+                        <h2 class="text-white mb-4">About Our Outline</h2>
+                        <p class="text-white-50">
+                            1. We found data from <a href="https://www.kaggle.com/datasets/surajjha101/stores-area-and-sales-data">Kaggle</a>, uploaded it to the CoCalc server to collaborate together using Python, imported Python packages, visualized the data, and trained different machine learning models.
+                            <br>
+                            2. We used information about some factors in a supermarket to predict store sales in order to help retail businesses become successful.
+                        </p>
+                    </div>
+                </div>
+              <!-- use the following line to import images-->
+              <img src="static/assets/supermarket.jpg" width = '701'/>
+            </div>
+        </section>
+        <!-- EDA-->
+        <section class="projects-section bg-light" id="EDA">
+            <div class="container px-4 px-lg-5">
+            <h2>Exploratory Data Analysis (EDA)</h2>
+                <!-- Featured Project Row-->
+                <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
+                    <div class="col-xl-8 col-lg-7"><img width = 650 class="img-fluid mb-3 mb-lg-0" src="static/assets/Data_Info.png" alt="..." /></div>
+                    <div class="col-xl-4 col-lg-5">
+                        <div class="featured-text text-center text-lg-left">
+                            <h4>Data Info</h4>
+                            <p class="text-black-50 mb-0">There are five different columns of data for the supermarkets: "Store ID," "Store_Area," "Items_Available," "Daily_Customer_Count," and "Store_Sales." Each column has 896 rows each with no null values.</p>
+                      </div>
+                    </div>
+                </div>
+                <!-- Featured Project Row-->
+                <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
+                  <!-- <img ... ></img> to insert static image -->
+                    <div class="col-xl-8 col-lg-7"><img width = 650 class="img-fluid mb-3 mb-lg-0" src="static/assets/Data_Describe.png" alt="..." /></div>
+                    <div class="col-xl-4 col-lg-5">
+                        <div class="featured-text text-center text-lg-left">
+                            <h4>Data Description</h4>
+                            <p class="text-black-50 mb-0">This is a table showing different statistics for the five columns, which are "Store ID," "Store_Area," "Items_Available," "Daily_Customer_Count," and "Store_Sales." We added more columns of data later on because there are not many factors in the supermarkets shown in this table.</p>
+                        </div>
+                    </div>
+                </div>
+              <!-- Featured Project Row-->
+                <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
+                    <div class="col-xl-8 col-lg-7"><iframe width = 875 height = 875 src="static/assets/scattermatrix.html"></iframe></div>
+                  <!-- Syntax for inserting plotly image: <iframe width = ? height = ? src = "file path"></iframe> -->
+                    <div class="col-xl-4 col-lg-5">
+                        <div class="featured-text text-center text-lg-left">
+                            <h4>Feature Scatter Matrix</h4>
+                            <p class="text-black-50 mb-0">This scatter matrix is a set of different scatter plots for some of the columns in the data set. The scatter plots help show how the columns relate to each other. The variable "cus/sqr" is the total customer count divided by the supermarket's area.</p>
+                        </div>
+                    </div>
+                </div>
+
+              <!-- Featured Project Row-->
+                <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
+                    <div class="col-xl-8 col-lg-7"><iframe width = 800 height = 600 src="static/assets/plot2.html"></iframe></div>
+                  <!-- Syntax for inserting plotly image: <iframe width = ? height = ? src = "file path"></iframe> -->
+                    <div class="col-xl-4 col-lg-5">
+                        <div class="featured-text text-center text-lg-left">
+                            <h4>Area - Daily Customer Count</h4>
+                            <p class="text-black-50 mb-0"> This is a scatter plot to show the relationship between a store's area and the number of daily customers. The x-axis is the store area in square yards, and the y-axis is the number of daily customers. The sales of the stores are also represented by the different colors. There does not seem to be a strong linear relationship between the area of a store and the daily customers.</p>
+
+                        </div>
+                    </div>
+                </div>
+              
+                 <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
+                    <div class="col-xl-8 col-lg-7"><iframe width = 800 height = 600 src="static/assets/plot1.html"></iframe></div>
+                  <!-- Syntax for inserting plotly image: <iframe width = ? height = ? src = "file path"></iframe> -->
+                    <div class="col-xl-4 col-lg-5">
+                        <div class="featured-text text-center text-lg-left">
+                            <h4>Area - Items Available</h4>
+                            <p class="text-black-50 mb-0"> This is a scatter plot to show the relationship between a store's area and the number of items available. The x-axis is the store area in square yards, and the y-axis is the number of items available. The brighter the color, the more money the store made in sales. As you can see, there is a strong correlation between a store's area and how much items a store has.</p>
+                        </div>
+                    </div>
+                </div>
+              <!-- Featured Project Row-->
+                <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
+                  <div class="col-xl-8 col-lg-7"><iframe width = 800 height = 600 src="static/assets/piechart.html"></iframe></div>
+                  <!-- Syntax for inserting plotly image: <iframe width = ? height = ? src = "file path"></iframe> -->
+                    <div class="col-xl-4 col-lg-5">
+                        <div class="featured-text text-center text-lg-left">
+                            <h4>Pie Chart for sales and area</h4>
+                            <p class="text-black-50 mb-0"> We created a new categorical variable called "Store_Scale" based on the areas of the stores. The orange color or "0" represents small stores (area < 1300 square yards), the blue color or "1" represents medium stores (1300 square yards < area < 1700 square yards), and the green color represents large stores (area > 1700 square yards). The pie chart on the left shows how many customers went to a certain size of a store, and the pie chart on the right shows how many sales were from a certain size of a store.</p>
+                        </div>
+                    </div>
+                </div>
+              <!-- Featured Project Row-->
+                <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
+                    <div class="col-xl-8 col-lg-7"><iframe width = 800 height = 600 src="static/assets/box_plot.html"></iframe></div>
+                  <!-- Syntax for inserting plotly image: <iframe width = ? height = ? src = "file path"></iframe> -->
+                    <div class="col-xl-4 col-lg-5">
+                        <div class="featured-text text-center text-lg-left">
+                            <h4>Box plot for features</h4>
+                            <p class="text-black-50 mb-0">This box plot shows the mean, the 25th percentile, the 75th percentile, the highest value, the lowest value, and any outliers for the store's area, items, and customers per day.</p>
+                        </div>
+                    </div>
+                </div>
+              <!-- Featured Project Row-->
+                <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
+                    <div class="col-xl-8 col-lg-7"><iframe width = 800 height = 600 src="static/assets/distribution.html"></iframe></div>
+                  <!-- Syntax for inserting plotly image: <iframe width = ? height = ? src = "file path"></iframe> -->
+                    <div class="col-xl-4 col-lg-5">
+                        <div class="featured-text text-center text-lg-left">
+                            <h4>Distribution for features</h4>
+                            <p class="text-black-50 mb-0">This is a histogram that shows the most common number of items in a store, the most common area of a store, and the most common number of customers in a store daily.</p>
+                        </div>
+                    </div>
+                </div>
+              <!-- Featured Project Row-->
+                <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
+                    <div class="col-xl-8 col-lg-7"><iframe width = 800 height = 600 src="static/assets/heatmap.html"></iframe></div>
+                  <!-- Syntax for inserting plotly image: <iframe width = ? height = ? src = "file path"></iframe> -->
+                    <div class="col-xl-4 col-lg-5">
+                        <div class="featured-text text-center text-lg-left">
+                            <h4>Heat map</h4>
+                            <p class="text-black-50 mb-0">This heat map shows the correlation between some of the columns in the data table. The strongest possible positive correlation is a value of 1, and the strongest possible negative correlation is a value of -1. As you can see in this heat map, the correlations range from -0.5 to 1. The correlations of this heat map can be seen by hovering over the boxes. The brighter the color or the more yellow a color, the stronger the positive correlation. The darker the color or the more blue a color, the stronger the negative correlation. For example, store area and items available create a yellow box with basically a correlation of 1, while the total customers over the area of the store creates a blue box with a correlation of -0.486.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+      <!-- Feature Selection-->
+        <section class="projects-section bg-light" id="FE">
+            <div class="container px-4 px-lg-5">
+            <h2>Feature Engineering</h2>
+                <!-- Featured Project Row-->
+                <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
+                    <div class="col-xl-8 col-lg-7"><img src="static/assets/correlation.jpg" width = '817'/></div>
+                    <div class="col-xl-4 col-lg-5">
+                        <div class="featured-text text-center text-lg-left">
+                            <h4>Correlation</h4>
+                            <p class="text-black-50 mb-0">There are not any correlations to the store sales. In the heat map above, store sales have close to zero relationship with the other factors in a supermarket.</p>
+                        </div>
+                    </div>
+                </div>
+              <!-- Featured Project Row-->
+                <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
+                    <div class="col-xl-8 col-lg-7"><img src="static/assets/collinearity.jpeg" width = '817'/></div>
+                    <div class="col-xl-4 col-lg-5">
+                        <div class="featured-text text-center text-lg-left">
+                            <h4>Collinearity</h4>
+                            <p class="text-black-50 mb-0">Collinearity is like the correlation between the independent variables, shown in the heat map. The only clear collinearity is postive, which is between the area of the store and the available items. There is some collinearity between the total customers divided by the store area and the area of the store.</p>
+                        </div>
+                    </div>
+                </div>
+              <!-- Featured Project Row-->
+                <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
+                    <div class="col-xl-8 col-lg-7"><img src="static/assets/outlier.jpg" width = '817'/></div>
+                    <div class="col-xl-4 col-lg-5">
+                        <div class="featured-text text-center text-lg-left">
+                            <h4>Outlier</h4>
+                            <p class="text-black-50 mb-0">Outliers are pieces of data that fall outside of the range of the majority of the pieces of data. In addition to seeing the outliers on the box plot, we used the Local Outlier Factor method in Python to determine whether each value in the columns in the data table was an outlier or not. Then we changed the data table to include only non-outliers.</p>
+                        </div>
+                    </div>
+                </div>
+              <!-- Featured Project Row-->
+                <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
+                    <div class="col-xl-8 col-lg-7"><img src="static/assets/missing value.webp" width = '817'/></div>
+                    <div class="col-xl-4 col-lg-5">
+                        <div class="featured-text text-center text-lg-left">
+                            <h4>Missing Value</h4>
+                            <p class="text-black-50 mb-0">Missing values can hurt the accuracy of our machine learning models. In this data set, there were no missing values. However, if there were missing values, we could have deleted the sections with missing values or replaced the missing values with the median or mean values.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          
+        </section>
+      <!-- Modeling-->
+        <section class="projects-section bg-light" id="Modeling">
+            <div class="container px-4 px-lg-5">
+            <h2>Modeling</h2>
+             <p>
+               Our machine learning model is used to predict regression in how much a supermarket will earn daily from sales. We decided to measure the accuracy of the predictions through the mean absolute error (MAE). A lower MAE should indicate a better prediction. However, we noticed that a lower mean absolute error is not necessarily good for our machine learning. A lower mean absolute error often resulted in the predicted data being more centered and therefore less spread out so that stores that were higher- and lower-income could not be represented, creating a middle-income majority of stores, which caused imbalanced data.
+              </p>
+                <!-- Project One Row-->
+                <div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
+                    <div class="col-lg-6"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Linear_regression.svg/1200px-Linear_regression.svg.png" width="610" height="400"></div>
+                    <div class="col-lg-6">
+                        <div class="bg-black text-center h-100 project">
+                            <div class="d-flex h-100">
+                                <div class="project-text w-100 my-auto text-center text-lg-left">
+                                    <h4 class="text-white">Linear Regression</h4>
+                                    <p class="mb-0 text-white-50">Regression analysis is a way of mathematically sorting out which variables have an impact on an analysis of data, such as which factors matter most and least, and how the factors interact with each other. It also judges the certainty about all these factors. There is a clear correlation between the effect of the independent variable (the known factors which impact on the dependent variable) on the dependent variable (factor that you’re trying to understand or predict), whose overall trend is linear.
+</p>
+                                    <hr class="d-none d-lg-block mb-0 ms-0" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project Two Row-->
+                <div class="row gx-0 justify-content-center">
+                    <div class="col-lg-6"><img src="https://miro.medium.com/max/874/1*HPRF74t_WJfKp6fp6ISlgQ.png" width="610" height="400"></div>
+                    <div class="col-lg-6 order-lg-first">
+                        <div class="bg-black text-center h-100 project">
+                            <div class="d-flex h-100">
+                                <div class="project-text w-100 my-auto text-center text-lg-right">
+                                    <h4 class="text-white">Random Tree Regression</h4>
+                                    <p class="mb-0 text-white-50">Pros: Works well with non-linear data, better accuracy than classification algorithms.
+Cons: Found to be biased when dealing with categorical variables, very slow to train. 
+An estimator algorithm that aggregates the results of many decision trees and outputs the most optimal result. The trees protect each other from individual errors.
+</p>
+                                    <hr class="d-none d-lg-block mb-0 me-0" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              <!-- Project Three Row-->
+                <div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
+                    <div class="col-lg-6"><img src="http://uc-r.github.io/public/images/analytics/gbm/boosted_stumps.gif" width="600" height="400"></div>
+                    <div class="col-lg-6">
+                        <div class="bg-black text-center h-100 project">
+                            <div class="d-flex h-100">
+                                <div class="project-text w-100 my-auto text-center text-lg-left">
+                                    <h4 class="text-white">Gradient Boosting</h4>
+                                    <p class="mb-0 text-white-50">Pros: Decreases bias error, can be utilized for regression and classification problems, the training speed is much faster as well as efficient due to histogram based algorithm (bucketing continuous feature values into discrete bins).
+Cons: Due to its algorithm constantly improving errors this could lead to overemphasized outliers and cause over fitting. It is also computationally expensive, requiring many trees which is memory and time exhausting.
+</p>
+                                    <hr class="d-none d-lg-block mb-0 ms-0" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+              <!-- Project Four Row-->
+                <div class="row gx-0 justify-content-center">
+                    <div class="col-lg-6"><img src="https://machinelearningmastery.com/wp-content/uploads/2020/08/Line-Plot-of-Expected-vs.-Births-Predicted-Using-XGBoost3.png" width="613" height="500"></div>
+                    <div class="col-lg-6 order-lg-first">
+                        <div class="bg-black text-center h-100 project">
+                            <div class="d-flex h-100">
+                                <div class="project-text w-100 my-auto text-center text-lg-right">
+                                    <h4 class="text-white">XGBoosting</h4>
+                                    <p class="mb-0 text-white-50">XGBoosting can be used for classification and regression. XGBoosting is similar to Random Forest Regression because of the use of trees. The trees’ outputs are combined. In XGBoosting, each tree will improve on the preceding tree’s outcome.
+Pros: XGBoosting is very popular for Kaggle data competitions and efficient. XGBoosting can be used for modeling highly complicated relationships.
+Cons: XGBoosting does not work on data that is not organized, and tuning XGBoosting is more difficult. An XGBoosting learning rate that is too quick will not be accurate. An XGBoosting learning rate that is too slow will not be quick to be accurate. XGBoosting may result in overfitting.
+</p>
+                                    <hr class="d-none d-lg-block mb-0 me-0" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               <!-- Project Five Row-->
+                <div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
+                    <div class="col-lg-6"><img src="https://miro.medium.com/max/1400/0*S6sohp4yKv3-G2FF.png" width="613" height="500"></div>
+                    <div class="col-lg-6">
+                        <div class="bg-black text-center h-100 project">
+                            <div class="d-flex h-100">
+                                <div class="project-text w-100 my-auto text-center text-lg-left">
+                                    <h4 class="text-white">Neural Network (MLP)</h4>
+                                    <p class="mb-0 text-white-50">Neural networks are very accurate in determining the patterns that exist within linear and non-linear patterns within datasets, which makes them more powerful/useful than other regression models like linear regression that fail for non-linear datasets. Once trained enough, the neural network can work accurately with a completely new set of inputs included ones that it has never seen before and make accurate predictions with it. Take a relatively longer amount of time to be trained and determine the underlying patterns that exist within the dataset similar to how the human brain functions. It takes a lot of processing power even for simple training with minimal hidden layers, so is not plausible for every user and every instance of using a machine learning model.
+</p>
+                                    <hr class="d-none d-lg-block mb-0 ms-0" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               <!-- Project Six Row-->
+                <div class="row gx-0 justify-content-center">
+                    <div class="col-lg-6"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Polyreg_scheffe.svg/325px-Polyreg_scheffe.svg.png" width="613" height="500"></div>
+                    <div class="col-lg-6 order-lg-first">
+                        <div class="bg-black text-center h-100 project">
+                            <div class="d-flex h-100">
+                                <div class="project-text w-100 my-auto text-center text-lg-right">
+                                    <h4 class="text-white">Polynomial Regression</h4>
+                                    <p class="mb-0 text-white-50">Pro: Polynomial regression provides an accurate approximation between the dependent and independent variables. Fits a wide range of curvature and broad range of functions.
+Con: Sensitive to outliers and can change data drastically. Fewer model validation tools for detection of outliers in nonlinear regression models.
+</p>
+                                    <hr class="d-none d-lg-block mb-0 me-0" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              <!-- Project Seven Row-->
+                <div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
+                    <div class="col-lg-6"><img src="https://miro.medium.com/max/691/1*Edq1ZIOo26Iqp3CuUTWotA.png" width="613" height="500"></div>
+                    <div class="col-lg-6">
+                        <div class="bg-black text-center h-100 project">
+                            <div class="d-flex h-100">
+                                <div class="project-text w-100 my-auto text-center text-lg-left">
+                                    <h4 class="text-white">Decision tree Regression</h4>
+                                    <p class="mb-0 text-white-50">Pro: This model can be used for both classification and regression problems, and is easy to visualize, interpret, and understand. Data preparation during pre-processing in a decision tree requires less effort and does not require normalization of data. Decision tree is not influenced by missing information or outliers. 
+Con: Overfitting happens when the learning algorithm continues developing hypotheses that reduce the training set error but at the cost of increasing test set error. Decision tree can not be used well with continuous numerical variables.
+</p>
+                                    <hr class="d-none d-lg-block mb-0 ms-0" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              <!-- Project Eight Row-->
+                <div class="row gx-0 justify-content-center">
+                    <div class="col-lg-6"><img src="https://cdn.corporatefinanceinstitute.com/assets/elastic-net1-1024x642.png" width="613" height="500"></div>
+                    <div class="col-lg-6 order-lg-first">
+                        <div class="bg-black text-center h-100 project">
+                            <div class="d-flex h-100">
+                                <div class="project-text w-100 my-auto text-center text-lg-right">
+                                    <h4 class="text-white">Elastic Net Regression</h4>
+                                    <p class="mb-0 text-white-50">The elastic net method performs variable selection and regularization simultaneously. The elastic net technique is most appropriate where the dimensional data is greater than the number of samples used. Elastic net is better for handling collinearity compared to models such as lasso.
+</p>
+                                    <hr class="d-none d-lg-block mb-0 me-0" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+   
+   
+        <!-- Evaluation -->
+        <section class="projects-section bg-light" id="Evaluation">
+            
+            <div class="container px-4 px-lg-5">
+            <h2>Evaluation</h2>
+                <!-- Project One Row-->
+                <div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
+                  <table class="styled-table">
+    <thead>
+        <tr>
+            <th>Machine Learning Model</th>
+            <th>Mean Absolute Error</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>Linear Regreesion</th>
+            <td>14294.48</td>
+        </tr>
+        <tr>
+            <th>Random Forest Regreesion	</th>
+            <td>15684.40</td>
+        </tr>
+      <tr>
+        <th>XGBoosting Regreesion</th>
+            <td>19106.32</td>
+        </tr>
+      <tr>
+
+            <th>Gradient Boosting</th>
+            <td>15198.76</td>
+        </tr>
+      <tr>
+            <th>Neural Network</th>
+            <td>14505.91</td>
+        </tr>
+      <tr>
+            <th>Polynomial Regression</th>
+            <td>13855.46</td>
+        </tr>
+      <tr>
+            <th>Elastic Net</th>
+            <td>14533.45</td>
+        </tr>
+        <!-- and so on... -->
+    </tbody>
+</table>
+                    <div class="col-lg-6"><iframe width = 630 height = 500 src="static/assets/modelbarchart.html"></iframe></div>
+                    <div class="col-lg-6">
+                        <div class="bg-black text-center h-100 project">
+                            <div class="d-flex h-100">
+                                <div class="project-text w-100 my-auto text-center text-lg-left">
+                                    <h4 class="text-white">Performance</h4>
+                                    <p class="mb-0 text-white-50">The goal MAE (Mean Absolute Error) was set at 13228.<br><br>The MAE of all the models we implemented can be seen in the bar chart on the left, which is our metric for measuring the performance of our machine learning models</p>
+                                    <hr class="d-none d-lg-block mb-0 ms-0" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project Two Row-->
+                <div class="row gx-0 justify-content-center">
+                    <div class="col-lg-6"><img width="700" class="img-fluid" src="static/assets/rank.jpg" alt="..." /></div>
+                    <div class="col-lg-6 order-lg-first">
+                        <div class="bg-black text-center h-100 project">
+                            <div class="d-flex h-100">
+                                <div class="project-text w-100 my-auto text-center text-lg-right">
+                                    <h4 class="text-white">Optimal Model</h4>
+                                    <p class="mb-0 text-white-50">The Polynomial Regression (degree = 2) has the lowest MAE, 13855.46.<br><br> The Polynomial Regression Model's predictions are, on average, more accurate than the other machine learning models' predictions.</p>
+                                    <hr class="d-none d-lg-block mb-0 me-0" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Summary-->
+<section class="projects-section bg-light" id="Summary">
+            <div class="container px-4 px-lg-5">
+            <h2>Summary</h2><br>
+            <h3>Conclusion</h3>
+            <p>
+              1. Our supermarket analysis model predicts store sales (in USD) based on a variety of factors such as items available, area of the store (square yards), daily customers, the size of the store (small, medium, large), and total customers/area to form the most effective solution for attracting customers and increasing sales.<br> 2. Thanks to Pandas, NumPy, Plotly, Matplotlib, and Seaborn being imported into Python, we were able to visualize our data using scatter plots, pie charts, histograms, and more. We also removed outliers from our data because they would make our predictions less accurate. We trained seven different algorithms for machine learning using our supermarket data.
+              </p>
+            <h3>Improvement</h3>
+            <p>
+              1. There was no data on the hours the supermarkets were open for. Supermarkets that were open for longer hours might have more sales than supermarkets that were open for shorter hours just because there was more time for customers to purchase from stores that were open for longer hours. We recommend that the supermarket data set also has how much time the store was operating for daily.<br>
+2. We noticed that a lower mean absolute error is not necessarily good for our machine learning. A lower mean absolute error sometimes resulted in the predicted data being more centered and therefore less spread out. We should find a balance between the mean absolute error and the diversity of the data so that stores that are higher- and lower-income could be represented rather than just the middle-income majority of stores.
+
+              </p>
+            <h3>Future plan</h3>
+            <p>
+              1. In the future, we could use a larger data set. Our project had only 896 pieces of data, but there are other data sets with thousands of pieces of data. A larger data set would lead to more accurate predictions.<br>
+2. We could focus on a single type of store, for example Walmart. Focusing on a single type of store can help make more accurate predictions because there will be a control. This will make our final project more accurate with its predictions.
+
+              
+              </p>
+            </div>
+        </section>
+        <!-- Contact-->
+        <section class="about-section text-center" id="Team">
+            <div class="container px-4 px-lg-5">
+              <h2 class="text-white">
+              Team Members
+          </h2>
+                <div class="row gx-4 gx-lg-5">
+                     <div class="col-md-4 mb-3 mb-md-0">
+                        <div class="card py-4 h-100">
+                            <div class="card-body text-center">
+                                <img class="img-fluid" width = 200 src="static/assets/Zengtao.jpg" alt="..." />
+                                <br>
+                                <br>
+                                <h4 class="text-uppercase m-0">Zengtao</h4>
+                                <hr class="my-4 mx-auto" />
+                                <div class="small text-black-50">School: Blue Valley North High School, Overland Park, KS</div>
+                                <div class="small text-black-50">Hobby: Practicing the trumpet and piano</div>
+                                <div class="small text-black-50">Job: All-around (data analysis, programming, website development)</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <div class="card py-4 h-100">
+                            <div class="card-body text-center">
+                                <img class="img-fluid" width = 200 src="{{url_for('static', filename='assets/profile.png')}}" alt="..." />
+                                <br>
+                                <br>
+                                <h4 class="text-uppercase m-0">Jen</h4>
+                                <hr class="my-4 mx-auto" />
+                                <div class="small text-black-50">School: ...</div>
+                                <div class="small text-black-50">Hobby: ...</div>
+                                <div class="small text-black-50">Job: ...</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <div class="card py-4 h-100">
+                            <div class="card-body text-center">
+                                <img class="img-fluid" width = 200 src="static/assets/samia.jpg" alt="..." />
+                                <br>
+                                <br>
+                                <h4 class="text-uppercase m-0">Samia</h4>
+                                <hr class="my-4 mx-auto" />
+                                <div class="small text-black-50">School: El Camino Real Charter High School, Woodland Hills, CA</div>
+                                <div class="small text-black-50">Hobby: I enjoy reading and writing poetry, singing/choral music, and watching animated series. </div>
+                                <div class="small text-black-50">Job: I don't have a job, but I dedicate lots of my time to NJROTC. </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              <br>
+              <div class="row gx-4 gx-lg-5">
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <div class="card py-4 h-100">
+                            <div class="card-body text-center">
+                                <img class="img-fluid" width = 200 src="{{url_for('static', filename='assets/profile.png')}}" alt="..." />
+                                <br>
+                                <br>
+                                <h4 class="text-uppercase m-0">April</h4>
+                                <hr class="my-4 mx-auto" />
+                                <div class="small text-black-50">School: Ravenwood High School, Brentwood, TN</div>
+                                <div class="small text-black-50">Hobby: Practicing the harp and reading</div>
+                                <div class="small text-black-50">Job: All around (data analysis, programming, website development)</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <div class="card py-4 h100">
+                            <div class="card-body text-center">
+                                <img class="img-fluid" width = 200 src="{{url_for('static', filename='assets/profile.png')}}" alt="..." />
+                                <br>
+                                <br>
+                                <h4 class="text-uppercase m-0">Zakir</h4>
+                                <hr class="my-4 mx-auto" />
+                                <div class="small text-black-50">School: ...</div>
+                                <div class="small text-black-50">Hobby: ...</div>
+                                <div class="small text-black-50">Job: ...</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <div class="card py-4 h-100">
+                            <div class="card-body text-center">
+                                <img class="img-fluid" width = 200 src="{{url_for('static', filename='assets/profile.png')}}" alt="..." />
+                                <br>
+                                <br>
+                                <h4 class="text-uppercase m-0">Johanna</h4>
+                                <hr class="my-4 mx-auto" />
+                                <div class="small text-black-50">School: ...</div>
+                                <div class="small text-black-50">Hobby: ...</div>
+                                <div class="small text-black-50">Job: ...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="social d-flex justify-content-center">
+                    <h3 class="text-white">
+                      Open Source for our website building
+                  </h3>
+                </div>
+                <div class="social d-flex justify-content-center">
+                <a class="mx-2" href="https://github.com/ythung85/ythung85.github.io"><i class="fab fa-github"></i></a>
+                </div>
+                <div class="social d-flex justify-content-center">
+                    <h3 class="text-white">
+                      Get more info about AICamp!!     <img class="img-fluid" width = 100 src="{{url_for('static', filename='assets/ai.png')}}" alt="..." />
+                  </h3>
+                  
+              </div>
+              <div class="social d-flex justify-content-center">
+                    <a class="mx-2" href="https://www.ai-camp.org/"><i class="fab fa-twitter"></i></a>
+                    <a class="mx-2" href="https://www.facebook.com/aicampdotorg/?view_public_for=849707208732789"><i class="fab fa-facebook-f"></i></a>
+                    <a class="mx-2" href="https://www.instagram.com/aicamp1/"><i class="fab fa-instagram"></i></a>
+                    <a class="mx-2" href="https://www.linkedin.com/company/ai-camp/mycompany/verification/"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </section>
+        <!-- Footer-->
+        <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; AI Camp 2022</div></footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="static/js/scripts.js"></script>
+      
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </body>
+</html>
